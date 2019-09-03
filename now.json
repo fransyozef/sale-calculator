@@ -1,0 +1,14 @@
+{
+    "version": 2,
+    "name": "sale-calculator",
+    "routes": [
+      {
+        "src": "dist/main.*.js",
+        "headers": { "Cache-Control": "s-maxage=0, max-age=0" }
+      },
+      {
+        "src": "dist/ngsw.json",
+        "headers": { "Cache-Control": "s-maxage=0, max-age=0" }
+      }
+    ] 
+  }
