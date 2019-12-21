@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "name": "sale-calculator",
+    "name": "procentage-calculator",
     "routes": [
       {
         "src": "dist/main.*.js",
