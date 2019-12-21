@@ -14,8 +14,8 @@ export class SaleCalculatorPage implements OnInit {
 
   resultValues = {
     reduction: 0,
-    salePrice: 0,
-    addPrice: 0
+    salePrice: '0',
+    addPrice: '0'
   };
 
   constructor() { }
@@ -37,8 +37,8 @@ export class SaleCalculatorPage implements OnInit {
 
   calculate() {
     this.resultValues.reduction = (this.inputValues.startValue * this.inputValues.procentage) / 100;
-    this.resultValues.salePrice  = this.inputValues.startValue - this.resultValues.reduction;
-    this.resultValues.addPrice  = this.inputValues.startValue + this.resultValues.reduction;
+    this.resultValues.salePrice  = (this.inputValues.startValue - this.resultValues.reduction).toFixed(2);
+    this.resultValues.addPrice  = (this.inputValues.startValue + this.resultValues.reduction).toFixed(2);
   }
 
 }
