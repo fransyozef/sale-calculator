@@ -1,6 +1,6 @@
 {
-  "name": "sale-calculator",
-  "version": "0.0.1",
+  "name": "procentage-calculator",
+  "version": "1.0.0",
   "author": "Tha Hangry Coder",
   "homepage": "https://medium.com/@fransyozef",
   "scripts": {
@@ -54,5 +54,5 @@
     "tslint": "~5.15.0",
     "typescript": "~3.4.3"
   },
-  "description": "An Ionic project"
+  "description": "Procentage Calculator PWA with IONIC and Angular"
 }
