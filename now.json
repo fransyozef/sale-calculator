@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "name": "procentage-calculator",
+    "name": "percentage-calculator",
     "routes": [
       {
         "src": "dist/main.*.js",

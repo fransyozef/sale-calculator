@@ -1,6 +1,8 @@
 <div class='numeric-keyboard-wrapper' [ngClass]="{'show': viewState}">
   <ion-toolbar color="light">
+    <ion-title>{{ title }}</ion-title>
     <ion-buttons slot="end">
+      <ion-button (click)="clear()">clear</ion-button>
       <ion-button (click)="hide()">close</ion-button>
     </ion-buttons>
   </ion-toolbar>

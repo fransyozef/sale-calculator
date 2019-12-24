@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-numeric-keyboard',
@@ -29,10 +29,9 @@ export class NumericKeyboardComponent implements OnInit {
 
   rootElement: any = null;
 
-  constructor(
-    private renderer: Renderer,
-    private elem: ElementRef
-  ) {
+  title = '';
+
+  constructor() {
     this.viewState  = false;
   }
 
@@ -43,9 +42,22 @@ export class NumericKeyboardComponent implements OnInit {
   show(srcElement?: any) {
     this.srcElement  = srcElement;
     if (this.srcElement) {
-      this.srcElement.blur();
+      this.toValues(this.srcElement.value);
     }
     this.viewState  = true;
+  }
+
+  toValues(str: string) {
+    let value  = `${str}`;
+    if (value === 'NaN') {
+      value = '0';
+    }
+    this.values = value.split('');
+  }
+
+  clear() {
+    this.values = [];
+    this.updateValues();
   }
 
   hide() {
@@ -58,6 +70,21 @@ export class NumericKeyboardComponent implements OnInit {
     this.viewState  = !this.viewState;
   }
 
+  updateValues() {
+    const valueStr  = this.values.join('');
+    const commaIndex  = this.values.indexOf('.');
+
+    const returnValue  = parseFloat(valueStr);
+
+    if (this.srcElement && this.srcElement.value) {
+      this.srcElement.value = commaIndex >= 0 ? parseFloat(valueStr).toFixed(2) : parseFloat(valueStr);
+    }
+    this.title  = `${returnValue}`;
+    if (this.title === 'NaN') {
+      this.title  = '';
+    }
+  }
+
   clicked(button: string) {
     switch (button) {
       case 'button-backspace' : {
@@ -65,28 +92,16 @@ export class NumericKeyboardComponent implements OnInit {
         break;
       }
       default: {
-        // console.log(button);
         if (this.mapValues[button]) {
+          if (this.values.length === 1 && this.values[0] === '0') {
+            this.values.pop();
+          }
           const val  = this.mapValues[button];
           this.values.push(val);
         }
         break;
       }
     }
-    // console.log(this.values);
-
-    const valueStr  = this.values.join('');
-    const commaIndex  = this.values.indexOf('.');
-
-    let returnValue  = null;
-    if (commaIndex >= 0) {
-      returnValue = parseFloat(valueStr).toFixed(2);
-    } else {
-      returnValue = parseFloat(valueStr);
-    }
-
-    if (this.srcElement && this.srcElement.value) {
-      this.srcElement.value = returnValue;
-    }
+    this.updateValues();
   }
 }
