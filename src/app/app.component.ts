@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {IdleMonitorService} from '@scullyio/ng-lib'; 
+ import { Component, OnInit } from '@angular/core';
 
 import { Platform, LoadingController, AlertController, ToastController } from '@ionic/angular';
 import { ToastOptions, LoadingOptions } from '@ionic/core';
@@ -22,7 +23,7 @@ export class AppComponent implements OnInit {
 
   toastInstall: any;
 
-  constructor(
+  constructor(private idle: IdleMonitorService,
     private platform: Platform,
     public loadingController: LoadingController,
     private swUpdate: SwUpdate,
