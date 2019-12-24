@@ -1,3 +1,4 @@
+import { NumericKeyboardComponent } from './../numeric-keyboard/numeric-keyboard.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -20,8 +21,11 @@ const routes: Routes = [
     ReactiveFormsModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
   ],
-  declarations: [SaleCalculatorPage]
+  declarations: [
+    SaleCalculatorPage,
+    NumericKeyboardComponent,
+  ]
 })
 export class SaleCalculatorPageModule {}

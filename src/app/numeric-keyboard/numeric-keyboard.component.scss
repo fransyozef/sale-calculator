@@ -1,0 +1,31 @@
+.numeric-keyboard-wrapper {
+    height: auto;
+    background-color: red;
+    display: block;
+    position: absolute;
+    z-index: 999;
+    bottom: -1000px;
+    width: 100%;
+
+
+
+    &.show {
+        -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+        -webkit-animation-duration: 0.2s; /* Safari 4.0 - 8.0 */
+        animation-name: example;
+        animation-duration: 0.2s;
+        animation-direction: normal;
+        animation-fill-mode: forwards;
+    }
+
+     
+    @keyframes example {
+        from {
+            bottom: -1000px;
+        }
+        to {
+            bottom: 0px;
+        }
+      }
+
+}

@@ -1,0 +1,30 @@
+<div class='numeric-keyboard-wrapper' [ngClass]="{'show': viewState}">
+  <ion-toolbar color="light">
+    <ion-buttons slot="end">
+      <ion-button (click)="hide()">close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-grid>
+    <ion-row>
+      <ion-col><ion-button expand="block" (click)="clicked('button-1')">1</ion-button></ion-col>
+      <ion-col><ion-button expand="block" (click)="clicked('button-2')">2</ion-button></ion-col>
+      <ion-col><ion-button expand="block" (click)="clicked('button-3')">3</ion-button></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col><ion-button expand="block" (click)="clicked('button-4')">4</ion-button></ion-col>
+      <ion-col><ion-button expand="block" (click)="clicked('button-5')">5</ion-button></ion-col>
+      <ion-col><ion-button expand="block" (click)="clicked('button-6')">6</ion-button></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col><ion-button expand="block" (click)="clicked('button-7')">7</ion-button></ion-col>
+      <ion-col><ion-button expand="block" (click)="clicked('button-8')">8</ion-button></ion-col>
+      <ion-col><ion-button expand="block" (click)="clicked('button-9')">9</ion-button></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col><ion-button expand="block" (click)="clicked('button-comma')">,</ion-button></ion-col>
+      <ion-col><ion-button expand="block" (click)="clicked('button-0')">0</ion-button></ion-col>
+      <ion-col><ion-button expand="block" (click)="clicked('button-backspace')"><ion-icon name="backspace"></ion-icon></ion-button></ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
+

@@ -6,13 +6,13 @@
     <ion-row>
       <ion-col  size="10" sizeXs="12" sizeLg="10" sizeMd="10">
         <ion-item>
-          <ion-input type="number" placeholder="Enter your starting value" [(ngModel)]="inputValues.startValue" (ionChange)="onValueChanged()" debounce="500"></ion-input>
+          <ion-input type="number" placeholder="Enter your starting value" [(ngModel)]="inputValues.startValue" (ionChange)="onValueChanged()" debounce="500" readonly="true" (click)="onFocusValue($event)"></ion-input>
         </ion-item>        
       </ion-col>
       <ion-col>
         <ion-item>
           <ion-label slot="end">%</ion-label>
-          <ion-input type="number" placeholder="Enter percentage" [(ngModel)]="inputValues.procentage" (ionChange)="onProcentageChanged()" debounce="500"></ion-input>
+          <ion-input type="number" placeholder="Enter percentage" [(ngModel)]="inputValues.procentage" (ionChange)="onProcentageChanged()" debounce="500" readonly="true" (ionChange)="onValueChanged()" debounce="500" readonly="true" (click)="onFocusPercentage($event)"></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -31,3 +31,5 @@
     </ion-card-content>
   </ion-card>
 </ion-content>
+
+<app-numeric-keyboard #numericKeyPad></app-numeric-keyboard>
