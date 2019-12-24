@@ -43,6 +43,7 @@ export class NumericKeyboardComponent implements OnInit {
     this.srcElement  = srcElement;
     if (this.srcElement) {
       this.toValues(this.srcElement.value);
+      this.title = `${this.srcElement.value}`;
     }
     this.viewState  = true;
   }
