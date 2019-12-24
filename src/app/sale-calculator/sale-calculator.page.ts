@@ -1,7 +1,6 @@
 import { element } from 'protractor';
 import { NumericKeyboardComponent } from './../numeric-keyboard/numeric-keyboard.component';
 import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
-import { IonContent } from '@ionic/angular';
 
 @Component({
   selector: 'app-sale-calculator',
@@ -11,7 +10,6 @@ import { IonContent } from '@ionic/angular';
 export class SaleCalculatorPage implements OnInit {
 
   @ViewChild(NumericKeyboardComponent, { static: false }) numericKeyPad: NumericKeyboardComponent;
-  @ViewChild(IonContent , { static: false}) content: IonContent;
 
   inputValues = {
     startValue: 0,
@@ -21,7 +19,8 @@ export class SaleCalculatorPage implements OnInit {
   resultValues = {
     reduction: 0,
     salePrice: '0',
-    addPrice: '0'
+    addPrice: '0',
+    reductionStr: '0'
   };
 
   constructor() { }
@@ -43,6 +42,7 @@ export class SaleCalculatorPage implements OnInit {
 
   calculate() {
     this.resultValues.reduction = (this.inputValues.startValue * this.inputValues.procentage) / 100;
+    this.resultValues.reductionStr = this.resultValues.reduction.toFixed(2);
     this.resultValues.salePrice  = (this.inputValues.startValue - this.resultValues.reduction).toFixed(2);
     this.resultValues.addPrice  = (this.inputValues.startValue + this.resultValues.reduction).toFixed(2);
   }
