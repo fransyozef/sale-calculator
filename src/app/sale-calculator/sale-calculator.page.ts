@@ -40,17 +40,16 @@ export class SaleCalculatorPage implements OnInit {
   }
 
   calculate() {
+    this.inputValues.startValue  = `${this.inputValues.startValue}` !== 'NaN' ? this.inputValues.startValue : 0;
+    this.inputValues.procentage  = `${this.inputValues.procentage}` !== 'NaN' ? this.inputValues.procentage : 0;
+
     this.resultValues.reduction = (this.inputValues.startValue * this.inputValues.procentage) / 100;
     this.resultValues.reductionStr = this.resultValues.reduction.toFixed(2);
     this.resultValues.salePrice  = (this.inputValues.startValue - this.resultValues.reduction).toFixed(2);
     this.resultValues.addPrice  = (this.inputValues.startValue + this.resultValues.reduction).toFixed(2);
   }
 
-  onFocusValue($event) {
-    this.numericKeyPad.show($event.srcElement);
-  }
-
-  onFocusPercentage($event) {
+  showNumericKeyPad($event) {
     this.numericKeyPad.show($event.srcElement);
   }
 
