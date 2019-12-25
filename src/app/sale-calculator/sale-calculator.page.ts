@@ -1,4 +1,3 @@
-import { element } from 'protractor';
 import { NumericKeyboardComponent } from './../numeric-keyboard/numeric-keyboard.component';
 import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 
@@ -51,8 +50,8 @@ export class SaleCalculatorPage implements OnInit {
     this.numericKeyPad.show($event.srcElement);
   }
 
-  async onFocusPercentage($event) {
-    await this.numericKeyPad.show($event.srcElement);
+  onFocusPercentage($event) {
+    this.numericKeyPad.show($event.srcElement);
   }
 
 }
