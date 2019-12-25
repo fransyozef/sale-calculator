@@ -39,7 +39,7 @@ $ pwa-asset-generator ../assets/splash.png assets/splashes/ -b "#dcdcdc" --splas
 
 ## TODO
 
-* Hide keyboar when losing focus
+* Hide keyboard when losing focus
 
 [pwa-asset-generator]: <https://github.com/onderceylan/pwa-asset-generator>
 [IONIC CLI]: <https://ionicframework.com/docs/installation/cli>
