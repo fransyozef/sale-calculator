@@ -37,6 +37,9 @@ $ pwa-asset-generator ../assets/icon.png assets/icons/ -b "#dcdcdc" --icon-only 
 $ pwa-asset-generator ../assets/splash.png assets/splashes/ -b "#dcdcdc" --splash-only
 ```
 
+## TODO
+
+* Hide keyboar when losing focus
 
 [pwa-asset-generator]: <https://github.com/onderceylan/pwa-asset-generator>
 [IONIC CLI]: <https://ionicframework.com/docs/installation/cli>
