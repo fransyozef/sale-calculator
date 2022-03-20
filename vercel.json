@@ -1,13 +1,17 @@
 {
-    "version": 2,
-    "routes": [
-      {
-        "src": "dist/main.*.js",
-        "headers": { "Cache-Control": "s-maxage=0, max-age=0" }
-      },
-      {
-        "src": "dist/ngsw.json",
-        "headers": { "Cache-Control": "s-maxage=0, max-age=0" }
-      }
-    ] 
-  }
+  "version": 2,
+  "routes": [
+    {
+      "src": "dist/main.*.js",
+      "headers": { "Cache-Control": "s-maxage=31536000, max-age=31536000" }
+    },
+    {
+      "src": "dist/ngsw.json",
+      "headers": { "Cache-Control": "s-maxage=31536000, max-age=31536000" }
+    },
+    {
+      "src": "/*.*.js",
+      "headers": { "Cache-Control": "s-maxage=31536000, max-age=31536000" }
+    }
+  ] 
+}
