@@ -56,8 +56,6 @@ export class AppComponent implements OnInit {
             handler: () => { }
           },
         ],
-        showCloseButton: false,
-        closeButtonText: 'OK',
         color: 'dark',
         // cssClass: 'custom-toast',
         position: 'bottom',
@@ -70,7 +68,7 @@ export class AppComponent implements OnInit {
 
   checkUpdate() {
     if (this.swUpdate.isEnabled) {
-      this.swUpdate.available.subscribe(async () => {
+      this.swUpdate.versionUpdates.subscribe(async () => {
         const alert = await this.alertController.create({
           header: `App update!`,
           message: `Newer version of the app is available. It's a quick refresh away!`,

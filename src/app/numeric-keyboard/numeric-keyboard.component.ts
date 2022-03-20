@@ -42,6 +42,7 @@ export class NumericKeyboardComponent implements OnInit {
   show(srcElement?: any) {
     this.srcElement  = srcElement;
     if (this.srcElement) {
+      // this.srcElement.value = `${this.srcElement.value}`;
       this.toValues(this.srcElement.value);
       this.title = `${this.srcElement.value}`;
     }
@@ -57,11 +58,12 @@ export class NumericKeyboardComponent implements OnInit {
   }
 
   clear() {
-    this.values = [];
+    this.values = ['0'];
     this.updateValues();
   }
 
   hide() {
+    this.srcElement.readonly = true;
     this.srcElement  = null;
     this.values = [];
     this.viewState  = false;
@@ -72,18 +74,25 @@ export class NumericKeyboardComponent implements OnInit {
   }
 
   updateValues() {
-    const valueStr  = this.values.join('');
-    const commaIndex  = this.values.indexOf('.');
+      console.log(this.values);
+      const valueStr  = this.values.join('');
+      const commaIndex  = this.values.indexOf('.');
 
-    const returnValue  = parseFloat(valueStr);
+      const returnValue  = parseFloat(valueStr);
 
-    if (this.srcElement && this.srcElement.value) {
-      this.srcElement.value = commaIndex >= 0 ? parseFloat(valueStr).toFixed(2) : parseFloat(valueStr);
-    }
-    this.title  = `${returnValue}`;
-    if (this.title === 'NaN') {
-      this.title  = '';
-    }
+      this.srcElement.readonly = false;
+      this.srcElement.value = `${this.srcElement.value}`;
+
+      if (this.srcElement && this.srcElement.value) {
+        const value = commaIndex >= 0 ? parseFloat(valueStr).toFixed(2) : parseFloat(valueStr);
+        this.srcElement.value = `${value}`;
+      }
+      this.title  = `${returnValue}`;
+      if (this.title === 'NaN') {
+        this.title  = '';
+      }
+
+      this.srcElement.readonly = true;
   }
 
   clicked(button: string) {

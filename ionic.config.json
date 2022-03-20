@@ -1,5 +1,7 @@
 {
-  "name": "percentage-calculator",
-  "integrations": {},
+  "name": "percentage",
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }
