@@ -1,6 +1,7 @@
-# Specifies intentionally untracked files to ignore when using Git
-# http://git-scm.com/docs/gitignore
-
+.env
+.env.local
+.env.staging
+.env.prod
 *~
 *.sw[mnpcod]
 .tmp
@@ -12,11 +13,9 @@
 Thumbs.db
 UserInterfaceState.xcuserstate
 $RECYCLE.BIN/
-
 *.log
 log.txt
 npm-debug.log*
-
 /.angular
 /.idea
 /.ionic
@@ -25,10 +24,18 @@ npm-debug.log*
 /.versions
 /.vscode
 /coverage
-/dist
 /node_modules
 /platforms
 /plugins
 /www
 .vercel
+/test
+.env
+.env.local
+.env.staging
+.env.prod
+README.md
+/assets
+/e2e
 .angular
+/dist
