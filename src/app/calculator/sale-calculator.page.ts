@@ -1,4 +1,4 @@
-import { NumericKeyboardComponent } from './../numeric-keyboard/numeric-keyboard.component';
+import { NumericKeyboardComponent } from '../numeric-keyboard/numeric-keyboard.component';
 import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 
 @Component({
