@@ -1,14 +1,22 @@
 import { NumericKeyboardComponent } from '../numeric-keyboard/numeric-keyboard.component';
-import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+
+import SwiperCore, { Autoplay, Keyboard, Pagination, Scrollbar, Zoom } from 'swiper';
+// import { IonicSlides } from '@ionic/angular';
+
+SwiperCore.use([Autoplay, Keyboard, Pagination, Scrollbar, Zoom]);
 
 @Component({
   selector: 'app-sale-calculator',
   templateUrl: './sale-calculator.page.html',
   styleUrls: ['./sale-calculator.page.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class SaleCalculatorPage implements OnInit {
 
   @ViewChild(NumericKeyboardComponent, { static: false }) numericKeyPad: NumericKeyboardComponent;
+
+  private slides: any;
 
   startingValue = "0,00";
 
@@ -24,7 +32,14 @@ export class SaleCalculatorPage implements OnInit {
     reductionStr: '0'
   };
 
+  activeSlideIndex = 0;
+
   constructor() { }
+
+  setSwiperInstance(swiper: any) {
+    this.slides = swiper;
+    this.activeSlideIndex = this.slides.activeIndex;
+  }
 
   ngOnInit() {
   }
@@ -52,18 +67,34 @@ export class SaleCalculatorPage implements OnInit {
   }
 
   showNumericKeyPad() {
+    // this.slides.allowTouchMove = false;
     this.numericKeyPad.show();
   }
 
   showKeyboardInitialValue() {
+    this.slides.allowTouchMove = false;
     this.numericKeyPad.show();
+  }
+
+  onKeyboardClose() {
+    this.slides.allowTouchMove = true;
   }
 
   onUpdatedValue($event) {
     if($event) {
-      console.log($event);
-      this.startingValue = $event;
+      switch(this.slides.activeIndex) {
+        case 0 : {
+          this.startingValue = $event;
+          break;
+        }
+      }
     }
+  }
+
+  onSlideChange() {
+    // console.log('onSlideChange');
+    // console.log(this.slides.activeIndex);
+    // this.numericKeyPad.hide();
   }
 
 }

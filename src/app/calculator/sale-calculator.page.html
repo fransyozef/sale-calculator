@@ -20,22 +20,40 @@
 </ion-header> -->
 
 <ion-content>
-  <ion-slides pager="true" [options]="slideOpts">
-
-    <ion-slide class="ion-padding" id="slide1">
+  <swiper 
+    [pagination]="true" 
+    [scrollbar]="false"
+    (slideChangeTransitionEnd)="onSlideChange()"
+    (swiper)="setSwiperInstance($event)"
+  >
+  
+    <ng-template 
+      swiperSlide 
+      class="ion-padding slide1"
+    >
       <h1 class="ion-text-uppercase">What is your starting value?</h1>
       <h2 (click)="showKeyboardInitialValue()">{{ startingValue }}</h2>  
-    </ion-slide>
+    </ng-template>
 
-    <ion-slide class="ion-padding">
-      <h1>Slide 2</h1>
-    </ion-slide>
+    <ng-template 
+      swiperSlide 
+      class="ion-padding slide2"
+    >
+      <h1 class="ion-text-uppercase">What is the percentage?</h1>
+    </ng-template>
 
-    <ion-slide class="ion-padding">
-      <h1>Slide 3</h1>
-    </ion-slide>
+    <ng-template 
+      swiperSlide 
+      class="ion-padding slide3"
+    >
+      Slide 3
+    </ng-template>
 
-  </ion-slides>
+  </swiper>
 </ion-content>
 
-<app-numeric-keyboard #numericKeyPad (updatedValue)="onUpdatedValue($event)"></app-numeric-keyboard>
+<app-numeric-keyboard 
+  #numericKeyPad 
+  (updatedValue)="onUpdatedValue($event)"
+  (close)="onKeyboardClose()"
+></app-numeric-keyboard>

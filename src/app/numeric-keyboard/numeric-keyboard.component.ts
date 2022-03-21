@@ -8,6 +8,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class NumericKeyboardComponent implements OnInit {
 
   @Output() updatedValue = new EventEmitter<string>();
+  @Output() close = new EventEmitter<void>();
 
   mapValues = {
     'button-1': '1',
@@ -65,12 +66,13 @@ export class NumericKeyboardComponent implements OnInit {
   }
 
   hide() {
+    this.viewState = false;
     if (this.srcElement) {
       this.srcElement.readonly = true;
       this.srcElement = null;
     }
     this.values = [];
-    this.viewState = false;
+    this.close.emit();
   }
 
   toggle() {
@@ -82,12 +84,13 @@ export class NumericKeyboardComponent implements OnInit {
     const commaIndex = this.values.indexOf(',');
 
     const value = parseFloat(valueStr).toFixed(2);
-    console.log(value);
 
     let convertedValue = `${value}`;
     convertedValue = convertedValue.replace('.', ',');
     if (convertedValue === 'NaN') {
-      this.title = '';
+      this.title = '0,00';
+    } else {
+      this.title = value;
     }
 
     // if (this.srcElement) {
@@ -97,14 +100,11 @@ export class NumericKeyboardComponent implements OnInit {
     //   this.srcElement.readonly = true;
     // }
 
-
     if (this.values.length > 0) {
       this.updatedValue.emit(convertedValue);
     } else {
       this.updatedValue.emit('0,00');
     }
-
-
   }
 
   clicked(button: string) {

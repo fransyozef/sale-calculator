@@ -11,8 +11,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "vercel" : "vercel",
-    "vercel:prod" : "vercel"
+    "vercel": "vercel",
+    "vercel:prod": "vercel"
   },
   "private": true,
   "dependencies": {
@@ -32,6 +32,7 @@
     "angular-page-visibility": "^11.0.0",
     "idb-keyval": "^6.1.0",
     "rxjs": "~6.6.0",
+    "swiper": "^8.0.7",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
   },

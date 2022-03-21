@@ -1,27 +1,32 @@
-.resultCard {
-    h1 {
-        font-size: -webkit-xxx-large;
-    }
+// .resultCard {
+//     h1 {
+//         font-size: -webkit-xxx-large;
+//     }
 
-    h3 {
-        font-size:1rem;
-    }
-}
+//     h3 {
+//         font-size:1rem;
+//     }
+// }
 
 /* Without setting height the slides will take up the height of the slide's content */
-ion-slides {
+.swiper {
     height: 100%;
 
-    ion-slide  {
-        align-items:flex-start;
+    .swiper-slide {
+        align-items: flex-start;
         text-align: left;
         justify-content: start;
-        display:block;
-    }
+        display: block;
 
-    #slide1 {
-        h2 {
-            font-size: -webkit-xxx-large;
+        h1 {
+            font-size: large;
         }
+
+        &.slide1 {
+            h2 {
+                font-size: -webkit-xxx-large;
+            }
+        }
+
     }
 }
