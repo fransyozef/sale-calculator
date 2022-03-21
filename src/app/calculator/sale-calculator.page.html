@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-title>Percentage Calculator</ion-title>
   </ion-toolbar>
@@ -17,41 +17,25 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-</ion-header>
+</ion-header> -->
 
 <ion-content>
-  <ion-card class='resultCard'>  
-    <ion-card-content class="ion-text-center">
-      <ion-text color="primary">
-        <h1>{{ resultValues.salePrice }}</h1>
-      </ion-text>
-      <ion-text color="primary">
-        <h3>You saved {{ resultValues.reductionStr }}</h3>
-      </ion-text>
-    </ion-card-content>
-  </ion-card>
+  <ion-slides pager="true" [options]="slideOpts">
+
+    <ion-slide class="ion-padding" id="slide1">
+      <h1 class="ion-text-uppercase">What is your starting value?</h1>
+      <h2 (click)="showKeyboardInitialValue()">{{ startingValue }}</h2>  
+    </ion-slide>
+
+    <ion-slide class="ion-padding">
+      <h1>Slide 2</h1>
+    </ion-slide>
+
+    <ion-slide class="ion-padding">
+      <h1>Slide 3</h1>
+    </ion-slide>
+
+  </ion-slides>
 </ion-content>
 
-<!-- <ion-footer>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-button fill="clear" size="small" expand="full" href="https://twitter.com/thehangrycoder">
-          <ion-icon name="logo-twitter"></ion-icon>
-        </ion-button>
-      </ion-col>
-      <ion-col>
-        <ion-button fill="clear" size="small" expand="full"  href="https://instagram.com/thehangrycoder">
-          <ion-icon name="logo-instagram"></ion-icon>
-        </ion-button>
-      </ion-col>
-      <ion-col>
-        <ion-button fill="clear" size="small" expand="full"  href="https://github.com/fransyozef/sale-calculator">
-          <ion-icon name="logo-github"></ion-icon>
-        </ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-</ion-footer> -->
-
-<app-numeric-keyboard #numericKeyPad></app-numeric-keyboard>
+<app-numeric-keyboard #numericKeyPad (updatedValue)="onUpdatedValue($event)"></app-numeric-keyboard>

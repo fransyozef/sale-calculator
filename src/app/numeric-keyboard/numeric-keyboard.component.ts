@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-numeric-keyboard',
@@ -7,18 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NumericKeyboardComponent implements OnInit {
 
-  mapValues  = {
-    'button-1' : '1',
-    'button-2' : '2',
-    'button-3' : '3',
-    'button-4' : '4',
-    'button-5' : '5',
-    'button-6' : '6',
-    'button-7' : '7',
-    'button-8' : '8',
-    'button-9' : '9',
-    'button-0' : '0',
-    'button-comma' : '.',
+  @Output() updatedValue = new EventEmitter<string>();
+
+  mapValues = {
+    'button-1': '1',
+    'button-2': '2',
+    'button-3': '3',
+    'button-4': '4',
+    'button-5': '5',
+    'button-6': '6',
+    'button-7': '7',
+    'button-8': '8',
+    'button-9': '9',
+    'button-0': '0',
+    'button-comma': '.',
   };
 
   srcElement: any;
@@ -32,7 +34,7 @@ export class NumericKeyboardComponent implements OnInit {
   title = '';
 
   constructor() {
-    this.viewState  = false;
+    this.viewState = false;
   }
 
   ngOnInit() {
@@ -40,17 +42,17 @@ export class NumericKeyboardComponent implements OnInit {
   }
 
   show(srcElement?: any) {
-    this.srcElement  = srcElement;
+    this.srcElement = srcElement;
     if (this.srcElement) {
-      // this.srcElement.value = `${this.srcElement.value}`;
+      this.srcElement.value = `${this.srcElement.value}`;
       this.toValues(this.srcElement.value);
       this.title = `${this.srcElement.value}`;
     }
-    this.viewState  = true;
+    this.viewState = true;
   }
 
   toValues(str: string) {
-    let value  = `${str}`;
+    let value = `${str}`;
     if (value === 'NaN') {
       value = '0';
     }
@@ -63,41 +65,51 @@ export class NumericKeyboardComponent implements OnInit {
   }
 
   hide() {
-    this.srcElement.readonly = true;
-    this.srcElement  = null;
+    if (this.srcElement) {
+      this.srcElement.readonly = true;
+      this.srcElement = null;
+    }
     this.values = [];
-    this.viewState  = false;
+    this.viewState = false;
   }
 
   toggle() {
-    this.viewState  = !this.viewState;
+    this.viewState = !this.viewState;
   }
 
   updateValues() {
-      console.log(this.values);
-      const valueStr  = this.values.join('');
-      const commaIndex  = this.values.indexOf('.');
+    const valueStr = this.values.join('');
+    const commaIndex = this.values.indexOf(',');
 
-      const returnValue  = parseFloat(valueStr);
+    const value = parseFloat(valueStr).toFixed(2);
+    console.log(value);
 
-      this.srcElement.readonly = false;
-      this.srcElement.value = `${this.srcElement.value}`;
+    let convertedValue = `${value}`;
+    convertedValue = convertedValue.replace('.', ',');
+    if (convertedValue === 'NaN') {
+      this.title = '';
+    }
 
-      if (this.srcElement && this.srcElement.value) {
-        const value = commaIndex >= 0 ? parseFloat(valueStr).toFixed(2) : parseFloat(valueStr);
-        this.srcElement.value = `${value}`;
-      }
-      this.title  = `${returnValue}`;
-      if (this.title === 'NaN') {
-        this.title  = '';
-      }
+    // if (this.srcElement) {
+    //   this.srcElement.readonly = false;
+    //   this.srcElement.value = `${this.srcElement.value}`;
+    //   this.srcElement.value = `${value}`;
+    //   this.srcElement.readonly = true;
+    // }
 
-      this.srcElement.readonly = true;
+
+    if (this.values.length > 0) {
+      this.updatedValue.emit(convertedValue);
+    } else {
+      this.updatedValue.emit('0,00');
+    }
+
+
   }
 
   clicked(button: string) {
     switch (button) {
-      case 'button-backspace' : {
+      case 'button-backspace': {
         this.values.pop();
         break;
       }
@@ -106,8 +118,23 @@ export class NumericKeyboardComponent implements OnInit {
           if (this.values.length === 1 && this.values[0] === '0') {
             this.values.pop();
           }
-          const val  = this.mapValues[button];
-          this.values.push(val);
+          const val = this.mapValues[button];
+          const commaIndex = this.values.indexOf('.');
+          if (val !== '.') {
+            if (commaIndex < 0) {
+              this.values.push(val);
+            } else {
+              const len = this.values.length;
+              const diff = len - commaIndex;
+              if (diff <= 2) {
+                this.values.push(val);
+              }
+            }
+          } else {
+            if (commaIndex < 0) {
+              this.values.push(val);
+            }
+          }
         }
         break;
       }

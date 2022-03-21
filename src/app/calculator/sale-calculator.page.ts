@@ -10,6 +10,8 @@ export class SaleCalculatorPage implements OnInit {
 
   @ViewChild(NumericKeyboardComponent, { static: false }) numericKeyPad: NumericKeyboardComponent;
 
+  startingValue = "0,00";
+
   inputValues = {
     startValue: 0,
     procentage: 0
@@ -28,29 +30,40 @@ export class SaleCalculatorPage implements OnInit {
   }
 
   onValueChanged() {
-    if (!this.inputValues.startValue !== null) {
-      this.calculate();
-    }
+    // if (!this.inputValues.startValue !== null) {
+    //   this.calculate();
+    // }
   }
 
   onProcentageChanged() {
-    if (!this.inputValues.procentage !== null) {
-      this.calculate();
-    }
+    // if (!this.inputValues.procentage !== null) {
+    //   this.calculate();
+    // }
   }
 
   calculate() {
-    this.inputValues.startValue  = `${this.inputValues.startValue}` !== 'NaN' ? this.inputValues.startValue : 0;
-    this.inputValues.procentage  = `${this.inputValues.procentage}` !== 'NaN' ? this.inputValues.procentage : 0;
+    // this.inputValues.startValue  = `${this.inputValues.startValue}` !== 'NaN' ? this.inputValues.startValue : 0;
+    // this.inputValues.procentage  = `${this.inputValues.procentage}` !== 'NaN' ? this.inputValues.procentage : 0;
 
-    this.resultValues.reduction = (this.inputValues.startValue * this.inputValues.procentage) / 100;
-    this.resultValues.reductionStr = this.resultValues.reduction.toFixed(2);
-    this.resultValues.salePrice  = (this.inputValues.startValue - this.resultValues.reduction).toFixed(2);
-    this.resultValues.addPrice  = (this.inputValues.startValue + this.resultValues.reduction).toFixed(2);
+    // this.resultValues.reduction = (this.inputValues.startValue * this.inputValues.procentage) / 100;
+    // this.resultValues.reductionStr = this.resultValues.reduction.toFixed(2);
+    // this.resultValues.salePrice  = (this.inputValues.startValue - this.resultValues.reduction).toFixed(2);
+    // this.resultValues.addPrice  = (this.inputValues.startValue + this.resultValues.reduction).toFixed(2);
   }
 
-  showNumericKeyPad($event) {
-    this.numericKeyPad.show($event.srcElement);
+  showNumericKeyPad() {
+    this.numericKeyPad.show();
+  }
+
+  showKeyboardInitialValue() {
+    this.numericKeyPad.show();
+  }
+
+  onUpdatedValue($event) {
+    if($event) {
+      console.log($event);
+      this.startingValue = $event;
+    }
   }
 
 }
