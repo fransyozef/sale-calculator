@@ -67,26 +67,27 @@ export class AppComponent implements OnInit {
   }
 
   checkUpdate() {
+    console.log(this.swUpdate.isEnabled);
     if (this.swUpdate.isEnabled) {
-      this.swUpdate.versionUpdates.subscribe(async () => {
-        const alert = await this.alertController.create({
-          header: `App update!`,
-          message: `Newer version of the app is available. It's a quick refresh away!`,
-          buttons: [
-            {
-              text: 'Cancel',
-              role: 'cancel',
-              cssClass: 'secondary',
-            }, {
-              text: 'Refresh',
-              handler: () => {
-                window.location.reload();
-              },
-            },
-          ],
-        });
-        await alert.present();
-      });
+      // this.swUpdate.versionUpdates.subscribe(async () => {
+      //   const alert = await this.alertController.create({
+      //     header: `App update!`,
+      //     message: `Newer version of the app is available. It's a quick refresh away!`,
+      //     buttons: [
+      //       {
+      //         text: 'Cancel',
+      //         role: 'cancel',
+      //         cssClass: 'secondary',
+      //       }, {
+      //         text: 'Refresh',
+      //         handler: () => {
+      //           window.location.reload();
+      //         },
+      //       },
+      //     ],
+      //   });
+      //   await alert.present();
+      // });
     }
   }
 

@@ -75,6 +75,10 @@ export class NumericKeyboardComponent implements OnInit {
     this.close.emit();
   }
 
+  isActive() : boolean {
+    return this.viewState;
+  }
+
   toggle() {
     this.viewState = !this.viewState;
   }

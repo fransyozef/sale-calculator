@@ -81,9 +81,9 @@ export class SaleCalculatorPage implements OnInit {
   }
 
   onUpdatedValue($event) {
-    if($event) {
-      switch(this.slides.activeIndex) {
-        case 0 : {
+    if ($event) {
+      switch (this.slides.activeIndex) {
+        case 0: {
           this.startingValue = $event;
           break;
         }
@@ -95,6 +95,16 @@ export class SaleCalculatorPage implements OnInit {
     // console.log('onSlideChange');
     // console.log(this.slides.activeIndex);
     // this.numericKeyPad.hide();
+  }
+
+  toSlide(index: number) {
+    const isActiveKeyboard = this.numericKeyPad.isActive();
+    if (!isActiveKeyboard) {
+      if (index && index >= 0) {
+        index--;
+        this.slides.slideTo(index);
+      }
+    }
   }
 
 }

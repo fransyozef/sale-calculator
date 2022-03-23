@@ -1,6 +1,6 @@
 {
   "name": "percentage-calculator",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "author": "The Hangry Coder",
   "homepage": "https://medium.com/@fransyozef",
   "scripts": {
@@ -12,7 +12,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "vercel": "vercel",
-    "vercel:prod": "vercel"
+    "vercel:prod": "vercel --prod"
   },
   "private": true,
   "dependencies": {
