@@ -49,7 +49,7 @@ export class AppComponent implements OnInit {
   async showIosInstallBanner() {
     if (!this.toastInstall) {
       this.toastInstall = await this.toastController.create({
-        buttons : [
+        buttons: [
           {
             icon: 'close',
             side: 'end',
@@ -67,27 +67,38 @@ export class AppComponent implements OnInit {
   }
 
   checkUpdate() {
-    console.log(this.swUpdate.isEnabled);
     if (this.swUpdate.isEnabled) {
-      // this.swUpdate.versionUpdates.subscribe(async () => {
-      //   const alert = await this.alertController.create({
-      //     header: `App update!`,
-      //     message: `Newer version of the app is available. It's a quick refresh away!`,
-      //     buttons: [
-      //       {
-      //         text: 'Cancel',
-      //         role: 'cancel',
-      //         cssClass: 'secondary',
-      //       }, {
-      //         text: 'Refresh',
-      //         handler: () => {
-      //           window.location.reload();
-      //         },
-      //       },
-      //     ],
-      //   });
-      //   await alert.present();
-      // });
+      this.swUpdate.versionUpdates.subscribe(async (evt) => {
+        switch (evt.type) {
+          // case 'VERSION_DETECTED':
+          //   console.log(`Downloading new app version: ${evt.version.hash}`);
+          //   break;
+          case 'VERSION_READY':
+            // console.log(`Current app version: ${evt.currentVersion.hash}`);
+            // console.log(`New app version ready for use: ${evt.latestVersion.hash}`);
+            const alert = await this.alertController.create({
+              header: `App update!`,
+              message: `Newer version of the app is available. It's a quick refresh away!`,
+              buttons: [
+                {
+                  text: 'Cancel',
+                  role: 'cancel',
+                  cssClass: 'secondary',
+                }, {
+                  text: 'Refresh',
+                  handler: () => {
+                    window.location.reload();
+                  },
+                },
+              ],
+            });
+            await alert.present();
+            break;
+          // case 'VERSION_INSTALLATION_FAILED':
+          //   console.log(`Failed to install app version '${evt.version.hash}': ${evt.error}`);
+          //   break;
+        }
+      });
     }
   }
 
@@ -98,7 +109,7 @@ export class AppComponent implements OnInit {
         visibilityState: AngularPageVisibilityStateEnum
       ) => {
         const visibility = localStorage.getItem('visibility');
-        let status  = '';
+        let status = '';
         switch (visibilityState) {
           case AngularPageVisibilityStateEnum.VISIBLE: {
             status = 'VISIBLE';
