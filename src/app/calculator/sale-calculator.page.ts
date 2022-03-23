@@ -95,6 +95,7 @@ export class SaleCalculatorPage implements OnInit {
     // console.log('onSlideChange');
     // console.log(this.slides.activeIndex);
     // this.numericKeyPad.hide();
+    this.activeSlideIndex = this.slides.activeIndex;
   }
 
   toSlide(index: number) {
@@ -104,6 +105,21 @@ export class SaleCalculatorPage implements OnInit {
         index--;
         this.slides.slideTo(index);
       }
+    }
+  }
+
+  previousSlide() {
+    const isActiveKeyboard = this.numericKeyPad.isActive();
+    if (!isActiveKeyboard) {
+      console.log(this.activeSlideIndex);
+      this.slides.slideTo(this.activeSlideIndex - 1);
+    }
+  }
+
+  nextSlide() {
+    const isActiveKeyboard = this.numericKeyPad.isActive();
+    if (!isActiveKeyboard) {
+      this.slides.slideTo(this.activeSlideIndex + 1);
     }
   }
 

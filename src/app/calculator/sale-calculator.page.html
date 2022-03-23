@@ -1,24 +1,3 @@
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-title>Percentage Calculator</ion-title>
-  </ion-toolbar>
-  <ion-grid>
-    <ion-row>
-      <ion-col  size="10" sizeXs="12" sizeLg="10" sizeMd="10">
-        <ion-item>
-          <ion-input type="number" placeholder="Enter your starting value" [(ngModel)]="inputValues.startValue" (ionChange)="onValueChanged()" debounce="250" readonly="true" (ionFocus)="showNumericKeyPad($event)"></ion-input>
-        </ion-item>        
-      </ion-col>
-      <ion-col>
-        <ion-item>
-          <ion-label slot="end">%</ion-label>
-          <ion-input type="number" placeholder="Enter percentage" [(ngModel)]="inputValues.procentage" (ionChange)="onProcentageChanged()" debounce="250" readonly="true" (ionChange)="onValueChanged()" debounce="500" readonly="true" (ionFocus)="showNumericKeyPad($event)"></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-</ion-header> -->
-
 <ion-content>
   <swiper 
     [pagination]="true" 
@@ -26,23 +5,13 @@
     (slideChangeTransitionEnd)="onSlideChange()"
     (swiper)="setSwiperInstance($event)"
   >
-  
+
     <ng-template 
       swiperSlide 
       class="ion-padding slide1"
     >
       <h1 class="big-header ion-text-uppercase">What is your starting value?</h1>
-      <h2 (click)="showKeyboardInitialValue()">{{ startingValue }}</h2>  
-      <ion-button 
-        shape="round" 
-        fill="outline" 
-        size="large" 
-        color="medium" 
-        style="margin-left:10px;"
-        (click)="toSlide(2)"
-      >
-        <ion-icon name="arrow-forward-outline"></ion-icon>
-      </ion-button>
+      <h2 class="input-value" (click)="showKeyboardInitialValue()">{{ startingValue }}</h2>  
     </ng-template>
 
     <ng-template 
@@ -50,29 +19,48 @@
       class="ion-padding slide2"
     >
       <h1 class="big-header ion-text-uppercase">What is the percentage?</h1>
-
-
-      <ion-button 
-        shape="round" 
-        fill="outline" 
-        size="large" 
-        color="medium" 
-        (click)="toSlide(1)"
-      >
-        <ion-icon name="arrow-back-outline"></ion-icon>
-      </ion-button>
-
+      <h2 class="input-value">800%</h2>
     </ng-template>
 
     <ng-template 
       swiperSlide 
       class="ion-padding slide3"
     >
-      Slide 3
+      <h1 class="big-header ion-text-uppercase">Result</h1>
     </ng-template>
 
   </swiper>
 </ion-content>
+
+<ion-footer>
+  <ion-row>
+    <ion-col>
+      <ion-button 
+      shape="round" 
+      fill="outline" 
+      size="medium" 
+      color="dark" 
+      expand="full"
+      (click)="previousSlide()"
+    >
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </ion-button>
+    </ion-col>
+    <ion-col class='ion-text-right'>
+      <ion-button 
+      shape="round" 
+      fill="outline" 
+      size="medium" 
+      color="dark" 
+      expand="full" 
+      (click)="nextSlide()"
+    >
+      <ion-icon name="arrow-forward-outline"></ion-icon>
+    </ion-button>
+    </ion-col>
+  </ion-row>
+
+</ion-footer>
 
 <app-numeric-keyboard 
   #numericKeyPad 
